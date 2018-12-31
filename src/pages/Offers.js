@@ -12,8 +12,8 @@ class Offers extends Component {
     }
     render() {
         let OfferList = this.state.list.map((offer, key) => {
-            return <OfferListItem key={key} company={offer.post.companyname} position={offer.post.jobtitle}
-                location={offer.post.location} meetingTime={offer.meetingtime} userStatus={offer.confirmed}
+            return <OfferListItem key={key} company={offer.post.companyname} position={offer.jobtitle}
+                location={offer.location} meetingTime={offer.meetingtime} userStatus={offer.confirmed}
                 corporateStatus={offer.accepted} applicationId = {offer.applicationid}/>
         });
         return (
@@ -28,10 +28,39 @@ class Offers extends Component {
         let token = localStorage.getItem("token");
         if (token != null && jwtDecode(token).accountType == "user") {
             https.get("/api/user/applications").then((response) => {
-		if ( response.data.length == 0) return;
-		for (let i = 0; i < response.data[0].length; i++) {
+		        if ( response.data.length == 0) return;
+                let list = [];
+                for (let i = 0; i < response.data[0].length; i++) {
+                    let temp = response.data[0][i].post;
+                    delete response.data[0][i].post;
+                    list.push({...response.data[0][i], ...temp})
+                }
+		        for (let i = 0; i < response.data[0].length; i++) {
                     this.setState((state) => {
                         state.list = state.list.concat(response.data[0][i]);
+                        return state;
+                    });
+                }
+            });
+        } else {
+            https.get("/api/corporate/applications").then((response) => {
+                let counter = 0;
+                let list = [];
+                for (let i = 0; i < response.data.length; i++) {
+                    if (response.data[i].applications.length != 0) {
+                        for (let j = 0; j < response.data[i].applications.length; j++) {
+                            list.push({...response.data[i].applications[j],
+                                salary: response.data[i].salary,
+                                title: response.data[i].jobtitle,
+                                location: response.data[i].location
+                            });
+                        }
+                        counter++;
+                    }
+                }
+                for (let k = 0; k < counter; k++) {
+                    this.setState((state) => {
+                        state.list = state.list.concat(list);
                         return state;
                     });
                 }
