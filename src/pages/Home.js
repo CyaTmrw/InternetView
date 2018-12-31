@@ -36,11 +36,11 @@ class Home extends Component {
                     <Grid container direction="column" justify="center" alignItems="center" style={{paddingTop: 40}}>
                         <div className="subtitle">What is Internetview?</div>
                         <p align="center">
-                            Internetview helps people land a job by making the process easy as possible.
-                            Compare to other job searching site, we are way more easier than them due to making everything done in one place.
-                            We will guide users through the whole process from find a desirable job to have an online interview with the employer.
-                            We are a plateform for finding jobs and applying to jobs for anyone looking for a job.
-                            We also allow employer to post jobs, review submitted applicants, and host online interviews.
+                            Internetview helps people land a job by making the process as easy as possible.
+                            Compared to other job searching websites, we offer quick and easy functionality as everything is done in one place.
+                            We will guide users through the whole process. From finding a desirable job to having an online interview with potential employers.
+                            We are a platform for finding jobs, applying to jobs and for anyone searching for jobs.
+                            We provide an interface that allows for employers to post jobs, review submitted applications, and host online interviews.
                         </p>
                     </Grid>
                     <Grid container direction="column" justify="center" style={{paddingTop: 40, backgroundColor: "rgb(232, 235, 239)"}}>
