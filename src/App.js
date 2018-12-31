@@ -1,28 +1,29 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Router, Route, browserHistory} from "react-router";
+import Home from "./pages/Home";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import Applicants from "./pages/Applicants";
+import Jobs from "./pages/Jobs";
+import Offers from "./pages/Offers";
+import Interview from "./pages/Interview";
+import PostJob from "./pages/PostJob";
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <Router history={browserHistory}>
+                <Route path="/" component={Home}></Route>
+                <Route path="/signup" component={Signup}></Route>
+                <Route path="/login" component={Login}></Route>
+                <Route path="/applicants" component={Applicants}></Route>
+                <Route path="/jobs" component={Jobs}></Route>
+                <Route path="/Offers" component={Offers}></Route>
+                <Route path="/interview" component={Interview}></Route>
+                <Route path="/post-job" component={PostJob}></Route>
+            </Router>
+        );
+    }
 }
 
 export default App;
