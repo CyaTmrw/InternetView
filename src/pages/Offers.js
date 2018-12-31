@@ -33,12 +33,15 @@ class Offers extends Component {
                 let list = [];
                 for (let i = 0; i < response.data[0].length; i++) {
                     let temp = response.data[0][i].post;
+                    console.log(temp);
                     delete response.data[0][i].post;
-                    list.push({...response.data[0][i], ...temp})
+                    list.push({...response.data[0][i], ...temp});
+                    console.log("----");
+                    console.log(list);
                 }
-		        for (let i = 0; i < response.data[0].length; i++) {
+		        for (let i = 0; i < list.length; i++) {
                     this.setState((state) => {
-                        state.list = state.list.concat(response.data[0][i]);
+                        state.list = state.list.concat(list);
                         return state;
                     });
                 }
