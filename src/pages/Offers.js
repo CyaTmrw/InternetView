@@ -30,11 +30,14 @@ class Offers extends Component {
             https.get("/api/user/applications").then((response) => {
 		        if ( response.data.length == 0) return;
                 let list = [];
-                for (let i = 0; i < response.data[0].length; i++) {
-                    let temp = response.data[0][i].post;
-                    delete response.data[0][i].post;
-                    list.push({...response.data[0][i], ...temp});
+                for (let j = 0; j < response.data.length; j++) {
+                    for (let i = 0; i < response.data[j].length; i++) {
+                        let temp = response.data[j][i].post;
+                        delete response.data[j][i].post;
+                        list.push({...response.data[j][i], ...temp});
+                    }
                 }
+
 		        for (let i = 0; i < list.length; i++) {
                     this.setState((state) => {
                         state.list = state.list.concat(list);

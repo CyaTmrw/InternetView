@@ -74,7 +74,7 @@ class ApplicantListItem extends Component {
             status: "denied"
         }
         https.post("/api/user/acceptoffer", data).then((response) => {
-            this.setState({status: "denied"});
+            this.setState({userStatus: "denied"});
             this.setState({success: "You have denied the interview!"});
             setTimeout(() => {
                 this.setState({success: null});
@@ -87,7 +87,7 @@ class ApplicantListItem extends Component {
             status: "accepted"
         }
         https.post("/api/user/acceptoffer", data).then((response) => {
-            this.setState({status: "accepted"});
+            this.setState({userStatus: "denied"});
             this.setState({success: "You have confirmed the interview!"});
             setTimeout(() => {
                 this.setState({success: null});
