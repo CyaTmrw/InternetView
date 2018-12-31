@@ -12,7 +12,7 @@ class Jobs extends Component {
     render() {
         let JobList = this.state.list.map((job, key) => {
             return <JobListItem key={key} id={job.postid} jobTitle={job.jobtitle} salary={job.salary} posted={job.datecreated.substring(0, job.datecreated.indexOf(","))}
-                companyName={job.companyName} time={job.jobtype} location={job.location} logo={job.logo}
+                companyName={job.companyname} time={job.jobtype} location={job.location} logo={job.logo}
                 description={job.description} />
         });
         return (
