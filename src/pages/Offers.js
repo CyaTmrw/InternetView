@@ -12,7 +12,7 @@ class Offers extends Component {
     }
     render() {
         let OfferList = this.state.list.map((offer, key) => {
-            return <OfferListItem key={key} company={offer.post.companyname} position={offer.jobtitle}
+            return <OfferListItem key={key} company={offer.companyname} position={offer.jobtitle}
                 location={offer.location} meetingTime={offer.meetingtime} userStatus={offer.confirmed}
                 corporateStatus={offer.accepted} applicationId = {offer.applicationid}/>
         });
