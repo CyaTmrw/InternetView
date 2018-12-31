@@ -3,17 +3,19 @@ import {Grid, Select, MenuItem} from "@material-ui/core";
 import { browserHistory } from "react-router";
 import https from "../services/https";
 import NavBar from "../components/NavBar";
+import ErrorMessage from "../components/ErrorMessage";
 import "../styles/App.css";
 
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {email: "", password: "", type: "user"};
+        this.state = {email: "", password: "", type: "user", error: null};
     }
     render() {
         return (
-            <Grid container direction="column" justify="center" alignItems="center">
+            <div className="container">
                 <NavBar />
+                <ErrorMessage message={this.state.error} />
                 <Grid container direction="column" justify="center" alignItems="center">
                     <input value={this.state.email} className="textInput"
                     onChange={(event) => this.setState({email: event.target.value})}
@@ -38,7 +40,7 @@ class Login extends Component {
                         Log In
                     </button>
                 </Grid>
-            </Grid>
+            </div>
 
 
         );
@@ -53,6 +55,11 @@ class Login extends Component {
                 https.post("/auth/login/user", data).then((response) => {
                     localStorage.setItem("token", JSON.stringify(response.data));
                     browserHistory.push('/jobs');
+                }).catch((error) => {
+                    this.setState({error: "Log in failed"});
+                    setTimeout(() => {
+                        this.setState({error: null});
+                    }, 1000);
                 });
             }
             else {
@@ -60,6 +67,11 @@ class Login extends Component {
                     console.log(response.data);
                     localStorage.setItem("token", JSON.stringify(response.data));
                     browserHistory.push('/applicants');
+                }).catch((error) => {
+                    this.setState({error: "Log in failed"});
+                    setTimeout(() => {
+                        this.setState({error: null});
+                    }, 1000);
                 });
             }
 

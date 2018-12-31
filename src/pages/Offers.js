@@ -19,6 +19,7 @@ class Offers extends Component {
         return (
             <div className="container">
                 <NavBar />
+                <OfferListItem userStatus="accepted" corporateStatus="accepted"/>
                 {OfferList}
             </div>
 

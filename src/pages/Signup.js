@@ -3,19 +3,20 @@ import { browserHistory } from "react-router";
 import {Grid, Select, MenuItem} from "@material-ui/core";
 import https from "../services/https";
 import NavBar from "../components/NavBar";
+import ErrorMessage from "../components/ErrorMessage";
 import "../styles/App.css";
 
 class Signup extends Component {
     constructor(props) {
         super(props);
-        this.state = {email: "", password: "", confirmPassword: "", name: "", type: "user"};
+        this.state = {email: "", password: "", confirmPassword: "", name: "", type: "user", error: null};
     }
     render() {
         return (
-            <Grid container direction="column" justify="center" alignItems="center">
+            <div className="container">
                 <NavBar />
+                <ErrorMessage message={this.state.error} />
                 <Grid container direction="column" justify="center" alignItems="center">
-
                     <input value={this.state.email} className="textInput"
                     onChange={(event) => this.setState({email: event.target.value})}
                     placeholder="Email" autoFocus={true} />
@@ -45,7 +46,7 @@ class Signup extends Component {
                         Sign Up
                     </button>
                 </Grid>
-            </Grid>
+            </div>
         );
     }
     signup() {
@@ -69,7 +70,11 @@ class Signup extends Component {
         if (this.state.email != "" && this.state.name != "" && this.state.password == this.state.confirmPassword && this.state.password != "") {
             https.post("/auth/register", data).then((response) => {
                 browserHistory.push('/login');
-                //localStorage.setItem("token", JSON.stringify(response.AuthorizationHeader.token));
+            }).catch((error) => {
+                this.setState({error: "Sign up failed"});
+                setTimeout(() => {
+                    this.setState({error: null});
+                }, 1000);
             });
         }
     }

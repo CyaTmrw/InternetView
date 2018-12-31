@@ -18,7 +18,7 @@ class App extends Component {
                 <Route path="/login" component={Login}></Route>
                 <Route path="/applicants" component={Applicants}></Route>
                 <Route path="/jobs" component={Jobs}></Route>
-                <Route path="/Offers" component={Offers}></Route>
+                <Route path="/offers" component={Offers}></Route>
                 <Route path="/interview" component={Interview}></Route>
                 <Route path="/post-job" component={PostJob}></Route>
             </Router>

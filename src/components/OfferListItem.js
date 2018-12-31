@@ -31,7 +31,7 @@ class ApplicantListItem extends Component {
         } else if (this.state.userStatus == "accepted" && this.state.corporateStatus == "accepted" && this.state.token != null){
             Buttons = (
                 <Grid container direction="row" justify="flex-end" alignItems="center">
-                    <button style={{borderRadius: 10, height: 40, width: 120, fontSize: 24, backgroundColor: "green"}}
+                    <button style={{borderRadius: 10, height: 40, width: 140, fontSize: 28, backgroundColor: "green", marginRight: 20}}
                         onClick={() => this.interview()}>
                         Interview
                     </button>
@@ -62,9 +62,10 @@ class ApplicantListItem extends Component {
         let token = localStorage.getItem("token");
         let payload;
         if (token != null) {
-            payload = jwtDecode(JSON.parse(token))
+            payload = jwtDecode(JSON.parse(token));
+            this.setState({token, accountType: payload.accountType})
         }
-        this.setState({token, accountType: payload.accountType})
+
 
     }
     decline() {
