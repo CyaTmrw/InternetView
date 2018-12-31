@@ -52,7 +52,9 @@ class Offers extends Component {
                             list.push({...response.data[i].applications[j],
                                 salary: response.data[i].salary,
                                 title: response.data[i].jobtitle,
-                                location: response.data[i].location
+                                location: response.data[i].location,
+                                companyname: response.data[i].companyname,
+                                position: response.data[i].jobtitle
                             });
                         }
                         counter++;
