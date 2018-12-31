@@ -12,7 +12,7 @@ class Offers extends Component {
     }
     render() {
         let OfferList = this.state.list.map((offer, key) => {
-            return <OfferListItem key={key} company={offer.companyname} position={offer.jobtitle}
+            return <OfferListItem key={key} company={offer.companyname} position={offer.position}
                 location={offer.location} meetingTime={offer.meetingtime} userStatus={offer.confirmed}
                 corporateStatus={offer.accepted} applicationId = {offer.applicationid}/>
         });
@@ -51,7 +51,6 @@ class Offers extends Component {
                         for (let j = 0; j < response.data[i].applications.length; j++) {
                             list.push({...response.data[i].applications[j],
                                 salary: response.data[i].salary,
-                                title: response.data[i].jobtitle,
                                 location: response.data[i].location,
                                 companyname: response.data[i].companyname,
                                 position: response.data[i].jobtitle
