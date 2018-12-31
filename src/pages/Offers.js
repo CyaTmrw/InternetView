@@ -28,7 +28,8 @@ class Offers extends Component {
         let token = localStorage.getItem("token");
         if (token != null && jwtDecode(token).accountType == "user") {
             https.get("/api/user/applications").then((response) => {
-                for (let i = 0; i < response.data[0].length; i++) {
+            if ( response.data == null ||response.data == []) return;
+		for (let i = 0; i < response.data[0].length; i++) {
                     this.setState((state) => {
                         state.list = state.list.concat(response.data[0][i]);
                         return state;
