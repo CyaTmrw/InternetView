@@ -1,7 +1,7 @@
 # InternetView
 
 ## About
-This is the repository for the web frontend of PocketQR.
+This is the repository for the web frontend of InternetView.
 
 Link to the devpost: https://devpost.com/software/internetview
 
